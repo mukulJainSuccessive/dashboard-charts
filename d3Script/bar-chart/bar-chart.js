@@ -27,13 +27,13 @@ function BarChartConstructor(mainData, mainElemId, height, width, svgId)  {
         width: width,
         height: height
     }
+    self.id = svgId;
     self.margin = {
         top : 30,
         right: 30,
         bottom: 40,
         left: 50
     }
-    self.stackedFlag = []; // to check which bar is showing stack in case mouseout event fails
     self.colors = {
         grey : '#7f7c9e',
         white : '#fff',
@@ -52,14 +52,11 @@ function BarChartConstructor(mainData, mainElemId, height, width, svgId)  {
     self.drawAxisScales = drawAxisScales;
     self.drawYAxis = drawYAxis;
     self.drawXAxis = drawXAxis;
-    self.renderBarChart = renderBarChart; //rendering of svg and main bar are done here
+    self.renderBarChart = renderBarChart; //rendering of svg and bar are done here
     self.addSVGAnimation = addSVGAnimation; //simple animation for svg container at initial load
     self.addBarLabelOnLoad = addBarLabelOnLoad;
     self.findMaxValue = findMaxValue;
-    self.findSumOfArrayExcludingLastElm = findSumOfArrayExcludingLastElm; //it is used to get height for palcing rects over one another in stack layout
     self.generateColorRange = generateColorRange;
-    self.showStackBar = showStackBar;
-    self.hideStackBar = hideStackBar;
 
     function createBarChart () {
         createBarChartMainData();
@@ -114,7 +111,6 @@ function BarChartConstructor(mainData, mainElemId, height, width, svgId)  {
 
     function drawXAxis() {
 
-      console.log($(window).height());
         var xAxis = d3.svg.axis()
                         .scale(self.hScale)
                         .orient('bottom')
@@ -122,7 +118,7 @@ function BarChartConstructor(mainData, mainElemId, height, width, svgId)  {
                         //     return !( i % (self.mainDataArray.length/6))
                         // }))
 
-        var xGuide = d3.select('.cu-svg-container-' + svgId)
+        var xGuide = d3.select('.cu-svg-container-' + self.id)
                         .append('g')
                         xAxis(xGuide)
                         xGuide.attr('transform', 'translate('+  self.margin.left +','+ (self.svg.height + self.margin.top) +')')
@@ -140,7 +136,7 @@ function BarChartConstructor(mainData, mainElemId, height, width, svgId)  {
                         .ticks(5)
                         .tickPadding(5);
 
-        var yGuide = d3.select('.cu-svg-container-' + svgId)
+        var yGuide = d3.select('.cu-svg-container-' + self.id)
                         .append('g')
                         yAxis(yGuide)
                         yGuide.attr('transform', 'translate('+  self.margin.left +','+ self.margin.top +')')
@@ -156,10 +152,9 @@ function BarChartConstructor(mainData, mainElemId, height, width, svgId)  {
         var myBarChart = d3.select('#'+self.elm).append('svg')
                    .attr('height', self.svg.height + self.margin.top + self.margin.bottom)
                    .attr('width', self.svg.width + self.margin.right + self.margin.left)
-                   .classed('cu-svg-container-' + svgId, true)
+                   .classed('cu-svg-container-' + self.id, true)
                    .style('padding-left', '90px')
                    .call(maintip)
-                   .call(settingMsgTip)
                    .append('g')
                         .attr('transform', 'translate('+ self.margin.left +','+ self.margin.top +')')
                         .style('background', self.colors.svgBackground)
@@ -195,16 +190,6 @@ function BarChartConstructor(mainData, mainElemId, height, width, svgId)  {
             })
            .on('mouseover', function(d) {
                 maintip.show(d);
-                self.stackedFlag[d.id] = {};
-                self.stackedFlag[d.id].flag = true;// right now useless
-                setTimeout(function() {
-                    showStackBar(d.id);
-                    for(var i in self.stackedFlag) {
-                        if(i != d.id) {
-                            hideStackBar(i); //here I am hiding all the stack bar container except the one I am on right now
-                        }
-                    }
-                }, 500);
            })
            .on('mouseout', function(d) {
                 maintip.hide(d);
@@ -254,29 +239,9 @@ function BarChartConstructor(mainData, mainElemId, height, width, svgId)  {
         self.max = d3.max(self.mainDataArray, function(d) { return +d.value;} );
     }
 
-    function findSumOfArrayExcludingLastElm(arr) {
-        var sum = 0;
-        for(var i in arr) {
-            if(i != (arr.length - 1)) {
-                sum += arr[i];
-            }
-        }
-        return sum;
-    }
-
     function generateColorRange() {
         self.barColors = d3.scale.linear()
                 .domain([0, self.mainDataArray.length])
                 .range([self.colors.barStart, self.colors.barEnd]);
-    }
-
-    function showStackBar(className) {
-        $('.stack-bar-group-'+className).addClass('show-element');
-        $('.stack-bar-group-'+className).removeClass('hide-element');
-    }
-
-    function hideStackBar(className) {
-        $('.stack-bar-group-'+className).removeClass('show-element');
-        $('.stack-bar-group-'+className).addClass('hide-element');
     }
 }

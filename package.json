@@ -22,7 +22,6 @@
   },
   "homepage": "https://github.com/mukulJainSuccessive/dashboard-charts#readme",
   "dependencies": {
-    "d3": "4.4.0",
     "http-server": "0.9.0"
   }
 }
