@@ -1,0 +1,28 @@
+{
+  "name": "dashboard-charts",
+  "version": "1.0.0",
+  "description": "Render various customizable d3 charts based on some data",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server",
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mukulJainSuccessive/dashboard-charts.git"
+  },
+  "keywords": [
+    "d3.js",
+    "charts"
+  ],
+  "author": "Mukul",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mukulJainSuccessive/dashboard-charts/issues"
+  },
+  "homepage": "https://github.com/mukulJainSuccessive/dashboard-charts#readme",
+  "dependencies": {
+    "d3": "4.4.0",
+    "http-server": "0.9.0"
+  }
+}
