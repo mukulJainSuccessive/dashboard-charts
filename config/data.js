@@ -12,8 +12,8 @@ var data = {
     },
     {
       "id": 3,
-      "name": "Country vs Population",
-      "label": "country"
+      "name": "Age vs Population",
+      "label": "age"
     },
   ]
 };

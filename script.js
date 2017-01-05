@@ -17,7 +17,7 @@ $.each(data.type, function(index, value){
     if(sampleData[value.label].default === "bar") {
       generateBarChart(sampleData[value.label].data, 'chart', 500, 500, svgId);
     } else if(sampleData[value.label].default === "pie") {
-      //pie chart rendering
+      generatePieChart(sampleData[value.label].data, 'chart', 500, 500, svgId);
     } else if(sampleData[value.label].default === "line") {
       generateLineChart(sampleData[value.label].data, 'chart', 500, 500, svgId);
     } else {
