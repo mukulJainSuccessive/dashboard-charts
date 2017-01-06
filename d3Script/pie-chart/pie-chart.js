@@ -15,6 +15,7 @@ function PieChartConstructor(params)  {
   self.id = params.svgId;
   self.types = params.chartTypes;
   self.chartId = params.chartId;
+  self.dashboard = params.dashboard;
 
   self.margin = {
       top : 30,
@@ -55,12 +56,19 @@ function PieChartConstructor(params)  {
       setColorRange();
       setRadius();
       renderPieChart();
-      renderDropDown({
-        id: self.id,
-        types: self.types,
-        chartId: self.chartId,
-        type: 'pie'
-      });
+
+      if(!self.dashboard) {
+        renderDropDown({
+          id: self.id,
+          types: self.types,
+          chartId: self.chartId,
+          type: 'pie'
+        });
+        renderDeleteButton({
+          id: self.id,
+          chartId: self.chartId,
+        });
+      }
   }
 
   function setRadius() {

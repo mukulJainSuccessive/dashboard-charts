@@ -31,6 +31,7 @@ function BarChartConstructor(params)  {
     self.id = params.svgId;
     self.types = params.chartTypes;
     self.chartId = params.chartId;
+    self.dashboard = params.dashboard;
 
     self.margin = {
         top : 30,
@@ -90,12 +91,20 @@ function BarChartConstructor(params)  {
         drawAxisScales();
         drawYAxis();
         drawXAxis();
-        renderDropDown({
-          id: self.id,
-          types: self.types,
-          chartId: self.chartId,
-          type: 'bar'
-        });
+
+        if(!self.dashboard) {
+          renderDropDown({
+            id: self.id,
+            types: self.types,
+            chartId: self.chartId,
+            type: 'bar'
+          });
+
+          renderDeleteButton({
+            id: self.id,
+            chartId: self.chartId,
+          });
+        }
     }
 
     function drawScales() {

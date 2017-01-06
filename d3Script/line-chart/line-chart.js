@@ -15,7 +15,8 @@ function LineChartConstructor(params)  {
   self.id = params.svgId;
   self.types = params.chartTypes;
   self.chartId = params.chartId;
-
+  self.dashboard = params.dashboard;
+  
   self.margin = {
       top : 30,
       right: 30,
@@ -58,12 +59,20 @@ function LineChartConstructor(params)  {
       setAxes();
       setLineScale();
       renderLineChart();
-      renderDropDown({
-        id: self.id,
-        types: self.types,
-        chartId: self.chartId,
-        type: 'line'
-      });
+
+      if(!self.dashboard) {
+        renderDropDown({
+          id: self.id,
+          types: self.types,
+          chartId: self.chartId,
+          type: 'line'
+        });
+
+        renderDeleteButton({
+          id: self.id,
+          chartId: self.chartId,
+        });
+      }
   }
 
   function setScales() {
