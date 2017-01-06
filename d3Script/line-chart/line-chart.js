@@ -58,12 +58,12 @@ function LineChartConstructor(params)  {
       setAxes();
       setLineScale();
       renderLineChart();
-      renderDropDown({
-        id: self.id,
-        types: self.types,
-        chartId: self.chartId,
-        type: 'line'
-      });
+      // renderDropDown({
+      //   id: self.id,
+      //   types: self.types,
+      //   chartId: self.chartId,
+      //   type: 'line'
+      // });
   }
 
   function setScales() {

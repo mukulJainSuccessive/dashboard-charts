@@ -1,4 +1,4 @@
-var inHTML = '<div class="grid grid-pad">';
+var inHTML = '<div class="grid grid-pad col-md-8 col-md-offset-2">';
 
 $.each(data.type, function(index, value){
 

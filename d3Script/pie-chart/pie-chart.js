@@ -55,12 +55,12 @@ function PieChartConstructor(params)  {
       setColorRange();
       setRadius();
       renderPieChart();
-      renderDropDown({
-        id: self.id,
-        types: self.types,
-        chartId: self.chartId,
-        type: 'pie'
-      });
+      // renderDropDown({
+      //   id: self.id,
+      //   types: self.types,
+      //   chartId: self.chartId,
+      //   type: 'pie'
+      // });
   }
 
   function setRadius() {

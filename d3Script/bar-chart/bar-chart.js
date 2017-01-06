@@ -90,12 +90,12 @@ function BarChartConstructor(params)  {
         drawAxisScales();
         drawYAxis();
         drawXAxis();
-        renderDropDown({
-          id: self.id,
-          types: self.types,
-          chartId: self.chartId,
-          type: 'bar'
-        });
+        // renderDropDown({
+        //   id: self.id,
+        //   types: self.types,
+        //   chartId: self.chartId,
+        //   type: 'bar'
+        // });
     }
 
     function drawScales() {
@@ -164,7 +164,7 @@ function BarChartConstructor(params)  {
                    .attr('width', self.svg.width + self.margin.right + self.margin.left)
                    .classed('cu-svg-container-' + self.id, true)
                    .style('padding-left', '90px')
-                   .call(maintip)
+                   .call(maintip);
 
         var myBarChart = svg.append('g')
                               .attr('transform', 'translate('+ self.margin.left +','+ self.margin.top +')')
