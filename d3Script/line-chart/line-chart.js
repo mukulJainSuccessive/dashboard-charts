@@ -1,18 +1,21 @@
-generateLineChart = (mainData, mainElemId, height, width, svgId) => {
-    new LineChartConstructor(mainData, mainElemId, height, width, svgId)
+generateLineChart = (params) => {
+    new LineChartConstructor(params)
             .createLineChart();
 }
 
-function LineChartConstructor(mainData, mainElemId, height, width, svgId)  {
+function LineChartConstructor(params)  {
   var self = this;
 
-  self.mainData = mainData;
-  self.elm = mainElemId;
+  self.mainData = params.data;
+  self.elem = params.elemId;
   self.svg = {
-      width: width,
-      height: height
+      width: params.width,
+      height: params.height
   }
-  self.id = svgId;
+  self.id = params.svgId;
+  self.types = params.chartTypes;
+  self.chartId = params.chartId;
+
   self.margin = {
       top : 30,
       right: 30,
@@ -55,6 +58,12 @@ function LineChartConstructor(mainData, mainElemId, height, width, svgId)  {
       setAxes();
       setLineScale();
       renderLineChart();
+      renderDropDown({
+        id: self.id,
+        types: self.types,
+        chartId: self.chartId,
+        type: 'line'
+      });
   }
 
   function setScales() {
@@ -86,7 +95,7 @@ function LineChartConstructor(mainData, mainElemId, height, width, svgId)  {
 
   function renderLineChart() {
 
-    var svg = d3.select('#'+self.elm).append('svg')
+    var svg = d3.select('#'+self.elem).append('svg')
                .attr('height', self.svg.height + self.margin.top + self.margin.bottom)
                .attr('width', self.svg.width + self.margin.right + self.margin.left)
                .classed('cu-svg-container-' + self.id, true)
@@ -112,7 +121,7 @@ function LineChartConstructor(mainData, mainElemId, height, width, svgId)  {
           .attr("class", "x axis")
           .attr("transform", "translate(0," + self.svg.height + ")")
           .call(self.xAxis);
-          
+
       // Add the Y Axis
       svg.append("g")
           .attr("class", "y axis")

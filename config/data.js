@@ -3,17 +3,17 @@ var data = {
     {
       "id": 1,
       "name": "Continent vs Population",
-      "label": "continent"
+      "chartId": "continent"
     },
     {
       "id": 2,
       "name": "$ vs Time",
-      "label": "currency"
+      "chartId": "currency"
     },
     {
       "id": 3,
       "name": "Age vs Population",
-      "label": "age"
+      "chartId": "age"
     },
   ]
 };

@@ -1,10 +1,10 @@
 
-generateBarChart = (mainData, mainElemId, height, width, svgId) => {
-    new BarChartConstructor(mainData, mainElemId, height, width, svgId)
+generateBarChart = (params) => {
+    new BarChartConstructor(params)
             .createBarChart();
 }
 
-function BarChartConstructor(mainData, mainElemId, height, width, svgId)  {
+function BarChartConstructor(params)  {
     var self = this;
     //tooltip for main bar
     var maintip = d3.tip()
@@ -21,13 +21,17 @@ function BarChartConstructor(mainData, mainElemId, height, width, svgId)  {
               .html(function(d) {
                 return '<span>Change Type</span>';
               })
-    self.mainData = mainData;
-    self.elm = mainElemId;
+
+    self.mainData = params.data;
+    self.elem = params.elemId;
     self.svg = {
-        width: width,
-        height: height
+        width: params.width,
+        height: params.height
     }
-    self.id = svgId;
+    self.id = params.svgId;
+    self.types = params.chartTypes;
+    self.chartId = params.chartId;
+
     self.margin = {
         top : 30,
         right: 30,
@@ -58,12 +62,12 @@ function BarChartConstructor(mainData, mainElemId, height, width, svgId)  {
     self.findMaxValue = findMaxValue;
     self.generateColorRange = generateColorRange;
 
-    function createBarChart () {
+    function createBarChart() {
         createBarChartMainData();
         drawBarChart();
     }
 
-    function createBarChartMainData () {
+    function createBarChartMainData() {
         var counter = 0;
         self.mainDataArray = []; //this will be the dataset for bar chart
         for(var i in self.mainData) {
@@ -86,6 +90,12 @@ function BarChartConstructor(mainData, mainElemId, height, width, svgId)  {
         drawAxisScales();
         drawYAxis();
         drawXAxis();
+        renderDropDown({
+          id: self.id,
+          types: self.types,
+          chartId: self.chartId,
+          type: 'bar'
+        });
     }
 
     function drawScales() {
@@ -149,26 +159,26 @@ function BarChartConstructor(mainData, mainElemId, height, width, svgId)  {
 
     function renderBarChart() {
 
-        var myBarChart = d3.select('#'+self.elm).append('svg')
+        var svg = d3.select('#'+self.elem).append('svg')
                    .attr('height', self.svg.height + self.margin.top + self.margin.bottom)
                    .attr('width', self.svg.width + self.margin.right + self.margin.left)
                    .classed('cu-svg-container-' + self.id, true)
                    .style('padding-left', '90px')
                    .call(maintip)
-                   .append('g')
-                        .attr('transform', 'translate('+ self.margin.left +','+ self.margin.top +')')
-                        .style('background', self.colors.svgBackground)
-                        .attr('class', 'bar-chart')
 
-                   .selectAll('g')
-                        .data(self.mainDataArray, function(d) {
-                            return d.value;
-                        })
-                        .enter()
-                        .append('g')
-                        .attr('class', function(d) {
-                            return 'main-bar-group-'+d.id;
-                        });
+        var myBarChart = svg.append('g')
+                              .attr('transform', 'translate('+ self.margin.left +','+ self.margin.top +')')
+                              .style('background', self.colors.svgBackground)
+                              .attr('class', 'bar-chart')
+                            .selectAll('g')
+                              .data(self.mainDataArray, function(d) {
+                                  return d.value;
+                              })
+                              .enter()
+                              .append('g')
+                              .attr('class', function(d) {
+                                  return 'main-bar-group-'+d.id;
+                              });
 
 
         var barChart = myBarChart.append('rect')
@@ -193,7 +203,8 @@ function BarChartConstructor(mainData, mainElemId, height, width, svgId)  {
            })
            .on('mouseout', function(d) {
                 maintip.hide(d);
-           })
+           });
+
            addSVGAnimation(barChart);
            addBarLabelOnLoad(myBarChart);
     }

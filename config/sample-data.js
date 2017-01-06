@@ -9,7 +9,7 @@ var sampleData = {
       '45-64':'8819342',
       '≥65':'612463'
     },
-    "chart-types": ['bar', 'pie'],
+    "chartTypes": ['bar', 'pie'],
     "default": "pie"
   },
 
@@ -30,7 +30,7 @@ var sampleData = {
       '10-May-07' :	'107.34',
       '11-May-07': '108.74'
     },
-    "chart-types": ['bar', 'line'],
+    "chartTypes": ['bar', 'line', 'pie'],
     "default": "line"
   },
 
@@ -42,7 +42,7 @@ var sampleData = {
       "South-America": 17827160,
       "Other-5": 25492544
     },
-    "chart-types": ['bar', 'pie'],
+    "chartTypes": ['bar', 'pie'],
     "default": "bar"
   }
 };

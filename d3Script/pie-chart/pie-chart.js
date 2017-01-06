@@ -1,18 +1,21 @@
-generatePieChart = (mainData, mainElemId, height, width, svgId) => {
-    new PieChartConstructor(mainData, mainElemId, height, width, svgId)
+generatePieChart = (params) => {
+    new PieChartConstructor(params)
             .createPieChart();
 }
 
-function PieChartConstructor(mainData, mainElemId, height, width, svgId)  {
+function PieChartConstructor(params)  {
   var self = this;
 
-  self.mainData = mainData;
-  self.elm = mainElemId;
+  self.mainData = params.data;
+  self.elem = params.elemId;
   self.svg = {
-      width: width,
-      height: height
+      width: params.width,
+      height: params.height
   }
-  self.id = svgId;
+  self.id = params.svgId;
+  self.types = params.chartTypes;
+  self.chartId = params.chartId;
+
   self.margin = {
       top : 30,
       right: 30,
@@ -52,6 +55,12 @@ function PieChartConstructor(mainData, mainElemId, height, width, svgId)  {
       setColorRange();
       setRadius();
       renderPieChart();
+      renderDropDown({
+        id: self.id,
+        types: self.types,
+        chartId: self.chartId,
+        type: 'pie'
+      });
   }
 
   function setRadius() {
@@ -72,9 +81,11 @@ function PieChartConstructor(mainData, mainElemId, height, width, svgId)  {
         .sort(null)
         .value(function(d) { return d.field; });
 
-    var svg = d3.select("body").append("svg")
-        .attr("width", self.svg.width)
-        .attr("height", self.svg.height)
+    var svg = d3.select('#'+self.elem).append("svg")
+        .attr('height', self.svg.height + self.margin.top + self.margin.bottom)
+        .attr('width', self.svg.width + self.margin.right + self.margin.left)
+        .classed('cu-svg-container-' + self.id, true)
+        .style('padding-left', '90px')
       .append("g")
         .attr("transform", "translate(" + self.svg.width / 2 + "," + self.svg.height / 2 + ")");
 
