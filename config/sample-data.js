@@ -10,7 +10,7 @@ var sampleData = {
       '≥65':'612463'
     },
     "chartTypes": ['bar', 'pie'],
-    "default": "pie"
+    "default": "bar"
   },
 
   'currency' : {
@@ -43,6 +43,6 @@ var sampleData = {
       "Other-5": 25492544
     },
     "chartTypes": ['bar', 'pie'],
-    "default": "bar"
+    "default": "pie"
   }
 };

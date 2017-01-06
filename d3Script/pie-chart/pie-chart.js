@@ -55,12 +55,12 @@ function PieChartConstructor(params)  {
       setColorRange();
       setRadius();
       renderPieChart();
-      // renderDropDown({
-      //   id: self.id,
-      //   types: self.types,
-      //   chartId: self.chartId,
-      //   type: 'pie'
-      // });
+      renderDropDown({
+        id: self.id,
+        types: self.types,
+        chartId: self.chartId,
+        type: 'pie'
+      });
   }
 
   function setRadius() {
@@ -88,6 +88,8 @@ function PieChartConstructor(params)  {
         .style('padding-left', '90px')
       .append("g")
         .attr("transform", "translate(" + self.svg.width / 2 + "," + self.svg.height / 2 + ")");
+
+    $('.cu-svg-container-' + self.id).draggable();
 
     var g = svg.selectAll(".arc")
         .data(pie(self.mainDataArray))
