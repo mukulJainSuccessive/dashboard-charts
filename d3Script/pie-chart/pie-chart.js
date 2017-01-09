@@ -68,6 +68,7 @@ function PieChartConstructor(params)  {
           id: self.id,
           chartId: self.chartId,
         });
+        $('.cu-svg-container-' + self.id).draggable();
       }
   }
 
@@ -96,8 +97,6 @@ function PieChartConstructor(params)  {
         .style('padding-left', '90px')
       .append("g")
         .attr("transform", "translate(" + self.svg.width / 2 + "," + self.svg.height / 2 + ")");
-
-    $('.cu-svg-container-' + self.id).draggable();
 
     var g = svg.selectAll(".arc")
         .data(pie(self.mainDataArray))

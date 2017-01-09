@@ -104,6 +104,8 @@ function BarChartConstructor(params)  {
             id: self.id,
             chartId: self.chartId,
           });
+
+          $('.cu-svg-container-' + self.id).draggable();
         }
     }
 
@@ -174,8 +176,6 @@ function BarChartConstructor(params)  {
                    .classed('cu-svg-container-' + self.id, true)
                    .style('padding-left', '90px')
                    .call(maintip);
-
-        $('.cu-svg-container-' + self.id).draggable();
 
         var myBarChart = svg.append('g')
                               .attr('transform', 'translate('+ self.margin.left +','+ self.margin.top +')')

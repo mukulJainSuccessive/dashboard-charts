@@ -16,7 +16,7 @@ function LineChartConstructor(params)  {
   self.types = params.chartTypes;
   self.chartId = params.chartId;
   self.dashboard = params.dashboard;
-  
+
   self.margin = {
       top : 30,
       right: 30,
@@ -72,6 +72,8 @@ function LineChartConstructor(params)  {
           id: self.id,
           chartId: self.chartId,
         });
+
+        $('.cu-svg-container-' + self.id).draggable();
       }
   }
 
@@ -113,8 +115,6 @@ function LineChartConstructor(params)  {
                     .attr('transform', 'translate('+ self.margin.left +','+ self.margin.top +')')
                     .style('background', self.colors.svgBackground)
                     .attr('class', 'line-chart');
-
-      $('.cu-svg-container-' + self.id).draggable();
 
       self.xScale.domain(d3.extent(self.mainDataArray, function(d) { return d.field; }));
       self.yScale.domain([0, d3.max(self.mainDataArray, function(d) { return d.key; })]);
