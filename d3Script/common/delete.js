@@ -25,8 +25,7 @@ function drawDelete() {
 function deleteChart() {
   var parentSVGId = $(this).attr('parent-svg-id');
   var chartId = $(this).attr('chart-id');
-  d3.select('.cu-svg-container-' + parentSVGId).remove();
-
+  d3.select('.list-' + parentSVGId).remove();
   var filter = selectedGraphs.filter(function(graph) {
     return graph.chartId == chartId;
   });

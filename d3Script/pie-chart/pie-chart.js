@@ -68,7 +68,6 @@ function PieChartConstructor(params)  {
           id: self.id,
           chartId: self.chartId,
         });
-        $('.cu-svg-container-' + self.id).draggable();
       }
   }
 
@@ -90,10 +89,13 @@ function PieChartConstructor(params)  {
         .sort(null)
         .value(function(d) { return d.field; });
 
-    var svg = d3.select('#'+self.elem).append("svg")
+    var svg = d3.select('#'+self.elem)
+        .append('li')
+        .classed('chart list-' + self.id, true)
+        .append("svg")
         .attr('height', self.svg.height + self.margin.top + self.margin.bottom)
         .attr('width', self.svg.width + self.margin.right + self.margin.left)
-        .classed('chart cu-svg-container-' + self.id, true)
+        .classed('cu-svg-container-' + self.id, true)
         .style('padding-left', '90px')
       .append("g")
         .attr("transform", "translate(" + self.svg.width / 2 + "," + self.svg.height / 2 + ")");

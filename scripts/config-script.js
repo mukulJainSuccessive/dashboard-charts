@@ -45,6 +45,7 @@ function cleanSessionData() {
   setCharts();
 }
 
+
 renderSampleDate();
 addListneres();
 cleanSessionData();
