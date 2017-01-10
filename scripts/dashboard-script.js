@@ -1,3 +1,7 @@
+/**
+* @file Gets saved charts data from session and then renders it on dashboard
+*/
+
 var self = this;
 
 function init() {

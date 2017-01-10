@@ -173,7 +173,7 @@ function BarChartConstructor(params)  {
         var svg = d3.select('#'+self.elem).append('svg')
                    .attr('height', self.svg.height + self.margin.top + self.margin.bottom)
                    .attr('width', self.svg.width + self.margin.right + self.margin.left)
-                   .classed('cu-svg-container-' + self.id, true)
+                   .classed('chart cu-svg-container-' + self.id, true)
                    .style('padding-left', '90px')
                    .call(maintip);
 
@@ -266,4 +266,6 @@ function BarChartConstructor(params)  {
                 .domain([0, self.mainDataArray.length])
                 .range([self.colors.barStart, self.colors.barEnd]);
     }
+
+
 }

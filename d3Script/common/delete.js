@@ -32,5 +32,5 @@ function deleteChart() {
   });
   var index = selectedGraphs.indexOf(filter[0]);
   selectedGraphs.splice(index, 1);
-  sessionStorage.setItem("charts", JSON.stringify(selectedGraphs));
+  setCharts(selectedGraphs);
 }

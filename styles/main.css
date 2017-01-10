@@ -163,3 +163,8 @@ path {
   fill: none;
   stroke: #000;
 }
+
+.module.disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}

@@ -93,7 +93,7 @@ function PieChartConstructor(params)  {
     var svg = d3.select('#'+self.elem).append("svg")
         .attr('height', self.svg.height + self.margin.top + self.margin.bottom)
         .attr('width', self.svg.width + self.margin.right + self.margin.left)
-        .classed('cu-svg-container-' + self.id, true)
+        .classed('chart cu-svg-container-' + self.id, true)
         .style('padding-left', '90px')
       .append("g")
         .attr("transform", "translate(" + self.svg.width / 2 + "," + self.svg.height / 2 + ")");

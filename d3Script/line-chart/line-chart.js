@@ -109,7 +109,7 @@ function LineChartConstructor(params)  {
     var svg = d3.select('#'+self.elem).append('svg')
                .attr('height', self.svg.height + self.margin.top + self.margin.bottom)
                .attr('width', self.svg.width + self.margin.right + self.margin.left)
-               .classed('cu-svg-container-' + self.id, true)
+               .classed('chart cu-svg-container-' + self.id, true)
                .style('padding-left', '90px')
                .append('g')
                     .attr('transform', 'translate('+ self.margin.left +','+ self.margin.top +')')
@@ -125,7 +125,7 @@ function LineChartConstructor(params)  {
           .attr("d", self.svg.lineScale(self.mainDataArray))
           .style('stroke', 'steelblue')
           .style('stroke-width', 1)
-          .style('fill', 'none')
+          .style('fill', 'none');
 
       // Add the X Axis
       svg.append("g")
