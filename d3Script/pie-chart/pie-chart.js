@@ -58,12 +58,6 @@ function PieChartConstructor(params)  {
       renderPieChart();
 
       if(!self.dashboard) {
-        renderDropDown({
-          id: self.id,
-          types: self.types,
-          chartId: self.chartId,
-          type: 'pie'
-        });
         renderDeleteButton({
           id: self.id,
           chartId: self.chartId,

@@ -93,13 +93,6 @@ function BarChartConstructor(params)  {
         drawXAxis();
 
         if(!self.dashboard) {
-          renderDropDown({
-            id: self.id,
-            types: self.types,
-            chartId: self.chartId,
-            type: 'bar'
-          });
-
           renderDeleteButton({
             id: self.id,
             chartId: self.chartId,

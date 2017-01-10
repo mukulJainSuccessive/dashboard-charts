@@ -61,13 +61,6 @@ function LineChartConstructor(params)  {
       renderLineChart();
 
       if(!self.dashboard) {
-        renderDropDown({
-          id: self.id,
-          types: self.types,
-          chartId: self.chartId,
-          type: 'line'
-        });
-
         renderDeleteButton({
           id: self.id,
           chartId: self.chartId,
